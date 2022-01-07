@@ -1,40 +1,67 @@
-import 'package:flutter/material.dart';
-import './random_words.dart';
+// import 'dart:convert';
+// import 'package:web_socket_channel/web_socket_channel.dart';
 
-void main() => runApp(const MyApp());
+// void main() async {
+//   /// Create the WebSocket channel
+//   final channel = WebSocketChannel.connect(
+//     Uri.parse('wss://ws-feed.pro.coinbase.com'),
+//   );
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
+//   channel.sink.add(
+//     jsonEncode(
+//       {
+//         "type": "subscribe",
+//         "channels": [
+//           {
+//             "name": "ticker",
+//             "product_ids": [
+//               "BTC-EUR",
+//             ]
+//           }
+//         ]
+//       },
+//     ),
+//   );
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final wordPair = WordPair.random();
-//     return MaterialApp(
-//         theme: ThemeData(primaryColor: Colors.black),
-//         home: Scaffold(
-//           appBar: AppBar(
-//             foregroundColor: Colors.redAccent,
-//             backgroundColor: Colors.yellow,
-//             title: const Text("Word Pair Generator"),
-//           ),
-//           body: Center(
-//             child: Text(wordPair.asPascalCase),
-//           ),
-//         ));
-//   }
+//   /// Listen for all incoming data
+//   channel.stream.listen(
+//     (data) {
+//       print(data);
+//       print(data.runtimeType);
+//     },
+//   );
 // }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+import 'dart:convert';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: const RandomWords(),
-    );
-  }
+void main() async {
+  /// Create the WebSocket channel
+  final channel = WebSocketChannel.connect(
+    Uri.parse('wss://6f81-103-125-163-154.ngrok.io'),
+  );
+
+  // channel.sink.add(
+  //   jsonEncode(
+  //     {
+  //       "type": "subscribe",
+  //       "channels": [
+  //         {
+  //           "name": "ticker",
+  //           "product_ids": [
+  //             "BTC-EUR",
+  //           ]
+  //         }
+  //       ]
+  //     },
+  //   ),
+  // );
+
+  /// Listen for all incoming data
+  channel.stream.listen(
+    (data) {
+      print(data);
+      print(data.runtimeType);
+    },
+  );
 }
